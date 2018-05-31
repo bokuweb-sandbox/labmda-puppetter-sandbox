@@ -1,0 +1,18 @@
+{
+  "name": "lambda-puppeteer-sandbox",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "setup": "PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true npm install",
+    "build": "make build",
+    "predeploy": "npm run build",
+    "deploy": "aws s3 cp deployment.zip s3://lambda-puppeteer-example/ && aws lambda update-function-code --function-name arn:aws:lambda:us-east-1:656375767177:function:puppeteer-example --s3-bucket lambda-puppeteer-example --s3-key deployment.zip"
+  },
+  "dependencies": {
+    "decompress": "^4.2.0",
+    "fs-extra": "^6.0.1",
+    "glob": "^7.1.2",
+    "puppeteer": "^1.4.0"
+  }
+}
